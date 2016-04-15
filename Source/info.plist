@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.Rudy.Alfred.Workflows.ipaddress</string>
+	<key>category</key>
+	<string>工具</string>
+	<key>connections</key>
+	<dict>
+		<key>3289708A-0526-480B-85C9-4503345A75C5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>367CC02C-9C53-4E1E-9870-2C10E402C866</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BDE0BFD-7B13-47C4-AE88-689F8598D8D9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>367CC02C-9C53-4E1E-9870-2C10E402C866</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BDE0BFD-7B13-47C4-AE88-689F8598D8D9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Ardy</string>
+	<key>description</key>
+	<string>Show IP WAN&amp;LAN address</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>IP Address</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>ip</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Receiving IP address…</string>
+				<key>script</key>
+				<string>WAN=$(curl http://members.3322.org/dyndns/getip)
+
+
+echo '&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+	&lt;item uid="" arg="'$WAN'"&gt;
+		&lt;title&gt;'$WAN'&lt;/title&gt;
+		&lt;subtitle&gt;WAN IP address&lt;/subtitle&gt;
+		&lt;icon&gt;wan.png&lt;/icon&gt;
+	&lt;/item&gt;
+&lt;/items&gt;'
+
+</string>
+				<key>title</key>
+				<string>WAN IP address</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>IP copied to clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>367CC02C-9C53-4E1E-9870-2C10E402C866</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2BDE0BFD-7B13-47C4-AE88-689F8598D8D9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>ip</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Receiving IP address…</string>
+				<key>script</key>
+				<string>LAN=$(ipconfig getifaddr en0)
+
+echo '&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+	&lt;item uid="" arg="'$LAN'"&gt;
+		&lt;title&gt;'$LAN'&lt;/title&gt;
+		&lt;subtitle&gt;LAN IP address&lt;/subtitle&gt;
+		&lt;icon&gt;lan.png&lt;/icon&gt;
+	&lt;/item&gt;
+&lt;/items&gt;'</string>
+				<key>title</key>
+				<string>LAN IP address</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3289708A-0526-480B-85C9-4503345A75C5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2BDE0BFD-7B13-47C4-AE88-689F8598D8D9</key>
+		<dict>
+			<key>ypos</key>
+			<real>320</real>
+		</dict>
+		<key>3289708A-0526-480B-85C9-4503345A75C5</key>
+		<dict>
+			<key>ypos</key>
+			<real>320</real>
+		</dict>
+		<key>367CC02C-9C53-4E1E-9870-2C10E402C866</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+		<key>6C68D0BB-A89A-4FDD-BB99-B5A5B460646E</key>
+		<dict>
+			<key>ypos</key>
+			<real>110</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>tangxiadi.cn</string>
+</dict>
+</plist>
